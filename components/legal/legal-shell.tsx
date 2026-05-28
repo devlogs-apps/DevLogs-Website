@@ -3,6 +3,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SectionLabel } from "@/components/section-label"
 import { cn } from "@/lib/utils"
+import { LegalToc } from "./legal-toc"
 
 export type TocItem = { id: string; label: string }
 
@@ -52,23 +53,7 @@ export function LegalShell({
         <section className="mx-auto w-full max-w-5xl px-4 pb-28 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[220px_1fr]">
             <aside className="hidden lg:block">
-              <nav className="sticky top-24" aria-label="On this page">
-                <p className="mb-3 px-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                  Contents
-                </p>
-                <ul className="space-y-0.5">
-                  {toc.map((t) => (
-                    <li key={t.id}>
-                      <a
-                        href={`#${t.id}`}
-                        className="block rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-card/60 hover:text-primary"
-                      >
-                        {t.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+              <LegalToc toc={toc} />
             </aside>
 
             <div className="min-w-0 space-y-14">{children}</div>
@@ -85,15 +70,20 @@ export function LegalShell({
 export function LegalSection({
   id,
   title,
+  number,
   children,
 }: {
   id: string
   title: string
+  number?: number
   children: ReactNode
 }) {
   return (
     <section id={id} className="scroll-mt-28">
       <h2 className="font-serif text-3xl leading-tight tracking-tight text-foreground sm:text-[2rem]">
+        {number != null ? (
+          <span className="mr-3 text-brand tabular-nums">{number}.</span>
+        ) : null}
         {title}
       </h2>
       <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-muted-foreground [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_strong]:font-medium [&_strong]:text-foreground">
@@ -141,6 +131,23 @@ export function InfoGrid({ items }: { items: { title: string; body: ReactNode }[
         </div>
       ))}
     </div>
+  )
+}
+
+export function Clauses({ section, items }: { section: number; items: ReactNode[] }) {
+  return (
+    <ol className="space-y-3">
+      {items.map((item, i) => (
+        <li key={i} className="flex gap-3">
+          <span className="shrink-0 pt-px font-mono text-sm tabular-nums text-primary">
+            {section}.{i + 1}
+          </span>
+          <span className="text-[15px] leading-relaxed text-muted-foreground">
+            {item}
+          </span>
+        </li>
+      ))}
+    </ol>
   )
 }
 

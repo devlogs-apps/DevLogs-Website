@@ -5,7 +5,7 @@ const APP = "Eid Wallpaper HD"
 
 export const metadata: Metadata = {
   title: `Privacy Policy · ${APP}`,
-  description: `Privacy Policy for the ${APP} app by DevLogs. GDPR, CCPA, COPPA, Google Play and Apple compliant.`,
+  description: `Privacy Policy for the ${APP} app by DevLogs. GDPR, CCPA, COPPA and Google Play compliant.`,
 }
 
 export default function Page() {

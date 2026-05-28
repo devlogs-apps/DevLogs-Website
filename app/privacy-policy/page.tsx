@@ -5,7 +5,7 @@ import { PRIVACY_TOC, PrivacyContent } from "@/components/legal/privacy-content"
 export const metadata: Metadata = {
   title: "Privacy Policy · DevLogs",
   description:
-    "How DevLogs collects, uses and protects your data across every app we publish on Google Play and the App Store. GDPR, CCPA, COPPA, Google and Apple compliant.",
+    "How DevLogs collects, uses and protects your data across every app we publish on Google Play. GDPR, CCPA, COPPA and Google Play compliant.",
 }
 
 export default function PrivacyPolicyPage() {

@@ -12,6 +12,7 @@ export const SITE = {
   phone: "+92 349 4263738",
   phoneHref: "tel:+923494263738",
   emailHref: "mailto:support@devlogs.pro",
+  address: "Shop No 21, New Ghalla Mandi, Bhakkar 30000, Pakistan",
   playStoreUrl: PLAY_STORE_DEV_URL,
 } as const
 
