@@ -1,8 +1,16 @@
-import { LegalShell, LEGAL_LAST_UPDATED } from "./legal-shell"
+import type { ReactNode } from "react"
+import { Callout, LegalShell, LEGAL_LAST_UPDATED } from "./legal-shell"
 import { PRIVACY_TOC, PrivacyContent } from "./privacy-content"
 import { TERMS_TOC, TermsContent } from "./terms-content"
 
-export function PrivacyAppPage({ appName }: { appName: string }) {
+export function PrivacyAppPage({
+  appName,
+  disclaimer,
+}: {
+  appName: string
+  /** Optional notice shown above the policy, e.g. a fan-made / trademark disclaimer. */
+  disclaimer?: ReactNode
+}) {
   return (
     <LegalShell
       kind="Privacy Policy"
@@ -12,6 +20,7 @@ export function PrivacyAppPage({ appName }: { appName: string }) {
       badge="Google Play"
       toc={PRIVACY_TOC}
     >
+      {disclaimer ? <Callout title="Disclaimer">{disclaimer}</Callout> : null}
       <PrivacyContent appName={appName} />
     </LegalShell>
   )
