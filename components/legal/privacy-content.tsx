@@ -20,7 +20,13 @@ export const PRIVACY_TOC: TocItem[] = [
   { id: "contact", label: "16. Contact" },
 ]
 
-export function PrivacyContent({ appName }: { appName?: string }) {
+export function PrivacyContent({
+  appName,
+  childDirected,
+}: {
+  appName?: string
+  childDirected?: boolean
+}) {
   const app = appName ? `the ${appName} app` : "our apps"
   const App = appName ? appName : "Our apps"
   const isPlural = !appName
@@ -55,10 +61,23 @@ export function PrivacyContent({ appName }: { appName?: string }) {
           ]}
         />
         <Callout title="The short version">
-          We build a range of mobile apps, from personalization and games to everyday
-          tools and utilities. You do not need an account to use them. We keep data
-          collection to the minimum needed to run the app, show ads in free versions, fix
-          crashes, and understand basic usage. We do not sell your personal information.
+          {childDirected ? (
+            <>
+              {App} is made for children and families. There is no account, no sign-up and
+              no chat. Drawings and progress stay on the device. Ads are
+              non-personalized only, we do not use the advertising identifier for
+              children, and we never sell personal information. Parents can contact us at
+              any time to ask what we hold and have it deleted.
+            </>
+          ) : (
+            <>
+              We build a range of mobile apps, from personalization and games to everyday
+              tools and utilities. You do not need an account to use them. We keep data
+              collection to the minimum needed to run the app, show ads in free versions,
+              fix crashes, and understand basic usage. We do not sell your personal
+              information.
+            </>
+          )}
         </Callout>
       </LegalSection>
 
@@ -129,16 +148,29 @@ export function PrivacyContent({ appName }: { appName?: string }) {
               title: "4.3 Usage data",
               body: "Anonymous, aggregated events such as which screens open or which features are used, to understand what to improve.",
             },
-            {
-              title: "4.4 Advertising identifiers",
-              body: "In free versions, advertising partners may use a resettable advertising identifier (Google Advertising ID) and coarse data such as country derived from your IP address.",
-            },
+            childDirected
+              ? {
+                  title: "4.4 Advertising identifiers",
+                  body: "We do not use the Google Advertising ID or any other persistent identifier for advertising in this app. Ads are non-personalized and rely only on contextual signals such as coarse country derived from the IP address, which is not used to build a profile.",
+                }
+              : {
+                  title: "4.4 Advertising identifiers",
+                  body: "In free versions, advertising partners may use a resettable advertising identifier (Google Advertising ID) and coarse data such as country derived from your IP address.",
+                },
           ]}
         />
         <Callout title="Information we never collect">
           We do not collect your name (unless you email us), precise GPS location, your
           contacts, your photo library, microphone audio, payment or financial details,
           health data, or login credentials. We do not require you to create an account.
+          {childDirected ? (
+            <>
+              {" "}
+              There is no chat, no messaging, no user-generated content sharing and no
+              social login, so children cannot make personal information public through
+              the app.
+            </>
+          ) : null}
         </Callout>
       </LegalSection>
 
@@ -167,11 +199,21 @@ export function PrivacyContent({ appName }: { appName?: string }) {
         <Clauses
           section={6}
           items={[
-            <>
-              <strong>Consent.</strong> We rely on your consent for personalized
-              advertising and for any non-essential analytics where consent is required.
-              You may withdraw consent at any time, as described in Section 7.
-            </>,
+            childDirected ? (
+              <>
+                <strong>Consent.</strong> We do not run personalized advertising in this
+                app, so we do not rely on consent for it. Where consent is required for
+                non-essential analytics, it is the consent of the parent or guardian as
+                the device owner, and it can be withdrawn at any time by contacting us or
+                uninstalling the app.
+              </>
+            ) : (
+              <>
+                <strong>Consent.</strong> We rely on your consent for personalized
+                advertising and for any non-essential analytics where consent is required.
+                You may withdraw consent at any time, as described in Section 7.
+              </>
+            ),
             <>
               <strong>Legitimate interests.</strong> We rely on our legitimate interests
               in keeping the app secure, fixing crashes and performing basic
@@ -193,25 +235,58 @@ export function PrivacyContent({ appName }: { appName?: string }) {
       <LegalSection id="advertising" number={7} title="Advertising and analytics">
         <Clauses
           section={7}
-          items={[
-            <>
-              Free versions of {app} may display advertising and use analytics and crash
-              reporting provided by the third parties listed below, acting as independent
-              controllers or as our processors. These partners may use the advertising
-              identifier and limited device data.
-            </>,
-            <>
-              In the EEA, the UK and other regions that require it, we request your consent
-              through a Google-certified consent prompt before any personalized
-              advertising. If you decline, you will still see ads, but they will be
-              non-personalized.
-            </>,
-            <>
-              You can reset or delete your advertising identifier and opt out of ad
-              personalization at any time on Android by opening Settings, then Google, then
-              Ads.
-            </>,
-          ]}
+          items={
+            childDirected
+              ? [
+                  <>
+                    Free versions of {app} display advertising and use analytics and crash
+                    reporting provided by the third parties listed below. Because the app
+                    is directed to children, every ad request is tagged as child-directed
+                    and mixed-audience under the Google Play Families Policy and COPPA.
+                  </>,
+                  <>
+                    <strong>Ads are non-personalized only.</strong> We do not allow
+                    interest-based or remarketing ads, we do not permit the use of
+                    persistent identifiers to target children, and ad partners may not
+                    build advertising profiles from this app.
+                  </>,
+                  <>
+                    Ad content is restricted to age-appropriate categories permitted by
+                    Google&apos;s Families Ads program. Ad units are certified by Google
+                    for use in child-directed apps.
+                  </>,
+                  <>
+                    Analytics in this app are aggregated and used only to fix crashes and
+                    understand which features are used. They are not used to track
+                    children across apps or websites.
+                  </>,
+                  <>
+                    A parent or guardian can remove advertising entirely by using any
+                    ad-free option offered in the app, and can reset or delete the device
+                    advertising identifier on Android under Settings, then Google, then
+                    Ads.
+                  </>,
+                ]
+              : [
+                  <>
+                    Free versions of {app} may display advertising and use analytics and
+                    crash reporting provided by the third parties listed below, acting as
+                    independent controllers or as our processors. These partners may use
+                    the advertising identifier and limited device data.
+                  </>,
+                  <>
+                    In the EEA, the UK and other regions that require it, we request your
+                    consent through a Google-certified consent prompt before any
+                    personalized advertising. If you decline, you will still see ads, but
+                    they will be non-personalized.
+                  </>,
+                  <>
+                    You can reset or delete your advertising identifier and opt out of ad
+                    personalization at any time on Android by opening Settings, then
+                    Google, then Ads.
+                  </>,
+                ]
+          }
         />
         <InfoGrid
           items={[
@@ -333,16 +408,64 @@ export function PrivacyContent({ appName }: { appName?: string }) {
       <LegalSection id="children" number={13} title="Children's privacy">
         <Clauses
           section={13}
-          items={[
-            <>
-              {App} {isPlural ? "are" : "is"} general-audience and {isPlural ? "are" : "is"}{" "}
-              not directed to children under 13, or under 16 in regions where that is the
-              applicable threshold. We do not knowingly collect personal data from
-              children.
-            </>,
-            "For any app enrolled in the Google Play family program, we serve only non-personalized ads, do not use persistent identifiers to target children, and follow COPPA and the Google Families Policy.",
-            "If you believe a child has provided personal data, contact us and we will delete it promptly.",
-          ]}
+          items={
+            childDirected
+              ? [
+                  <>
+                    {App} is designed for children and families and is enrolled in the
+                    Google Play Families program. We handle it in line with the
+                    Children&apos;s Online Privacy Protection Act (COPPA), the GDPR
+                    provisions on children&apos;s data, and the Google Play Families
+                    Policy.
+                  </>,
+                  <>
+                    <strong>We do not collect personal information from children.</strong>{" "}
+                    There is no account, no sign-in, no name, email, photo, voice, contact
+                    or location collection, and no chat or social feature. Colouring
+                    pages, artwork and progress are stored on the device only and are
+                    never uploaded to us.
+                  </>,
+                  <>
+                    The only data leaving the device is anonymous crash and aggregated
+                    usage data used to keep the app working, plus the non-personalized ad
+                    requests described in Section 7. None of it is used to identify,
+                    profile or track a child.
+                  </>,
+                  <>
+                    We do not knowingly allow third parties to collect personal
+                    information from children through the app, and we require our ad and
+                    analytics providers to operate in child-directed mode.
+                  </>,
+                  <>
+                    <strong>Parents and guardians.</strong> You may ask us what data, if
+                    any, is associated with your child, ask us to delete it, and refuse
+                    any further collection by emailing{" "}
+                    <a href={SITE.emailHref}>{SITE.email}</a>. We act on verified requests
+                    promptly, and in any case within the time the law allows. Deleting the
+                    app or clearing its data removes everything stored on the device.
+                  </>,
+                  <>
+                    Purchases, where offered, require the device owner&apos;s payment
+                    credentials and are handled entirely by Google Play. We recommend
+                    enabling purchase authentication in the Play Store so that a child
+                    cannot buy anything without a parent&apos;s approval.
+                  </>,
+                  <>
+                    If you believe a child has provided personal information to us despite
+                    these measures, contact us and we will delete it promptly.
+                  </>,
+                ]
+              : [
+                  <>
+                    {App} {isPlural ? "are" : "is"} general-audience and{" "}
+                    {isPlural ? "are" : "is"} not directed to children under 13, or under
+                    16 in regions where that is the applicable threshold. We do not
+                    knowingly collect personal data from children.
+                  </>,
+                  "For any app enrolled in the Google Play family program, we serve only non-personalized ads, do not use persistent identifiers to target children, and follow COPPA and the Google Families Policy.",
+                  "If you believe a child has provided personal data, contact us and we will delete it promptly.",
+                ]
+          }
         />
       </LegalSection>
 

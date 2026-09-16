@@ -6,10 +6,13 @@ import { TERMS_TOC, TermsContent } from "./terms-content"
 export function PrivacyAppPage({
   appName,
   disclaimer,
+  childDirected,
 }: {
   appName: string
   /** Optional notice shown above the policy, e.g. a fan-made / trademark disclaimer. */
   disclaimer?: ReactNode
+  /** Kids/family app: COPPA + Google Play Families wording, no personalized ads. */
+  childDirected?: boolean
 }) {
   return (
     <LegalShell
@@ -21,7 +24,7 @@ export function PrivacyAppPage({
       toc={PRIVACY_TOC}
     >
       {disclaimer ? <Callout title="Disclaimer">{disclaimer}</Callout> : null}
-      <PrivacyContent appName={appName} />
+      <PrivacyContent appName={appName} childDirected={childDirected} />
     </LegalShell>
   )
 }
