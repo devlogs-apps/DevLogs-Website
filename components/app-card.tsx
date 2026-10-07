@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 
 export function AppCard({ app, className }: { app: PlayStoreApp; className?: string }) {
   return (
-    <article className={cn("group flex flex-col rounded-[32px] bg-paper p-2", className)}>
+    <article className={cn("group flex flex-col rounded-[32px] bg-paper p-2 transition-transform duration-500 ease-heavy hover:-translate-y-1.5", className)}>
       <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[24px] bg-mist">
         {app.featureGraphic ? (
           <Image

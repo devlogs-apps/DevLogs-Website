@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer"
 import { AppCard } from "@/components/app-card"
 import { RiseLines } from "@/components/rise-lines"
 import { EmptyApps } from "@/components/empty-apps"
+import { CountUp, FadeIn } from "@/components/motion"
 import { getPlayStoreApps, summarizeApps } from "@/lib/play-store"
 
 export const metadata: Metadata = {
@@ -47,7 +48,9 @@ export default async function AppsPage() {
               {stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col-reverse gap-2">
                   <dt className="mono-label text-smoke">{stat.label}</dt>
-                  <dd className="display text-5xl">{stat.value}</dd>
+                  <dd className="display text-5xl">
+                    <CountUp value={stat.value} />
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -59,8 +62,10 @@ export default async function AppsPage() {
             <EmptyApps />
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-              {apps.map((app) => (
-                <AppCard key={app.appId} app={app} />
+              {apps.map((app, i) => (
+                <FadeIn key={app.appId} delay={(i % 3) * 0.08} className="h-full">
+                  <AppCard app={app} className="h-full" />
+                </FadeIn>
               ))}
             </div>
           )}

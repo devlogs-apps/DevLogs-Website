@@ -1,10 +1,11 @@
 import Link from "next/link"
 import { SITE } from "@/lib/site"
+import { FadeIn } from "./motion"
 
 export function ContactCta({ body }: { body: string }) {
   return (
     <section className="mx-auto w-full max-w-[1200px] px-4 py-20 sm:px-6 lg:py-24">
-      <div className="grid gap-10 rounded-[48px] bg-paper p-6 sm:p-10 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:rounded-[64px] lg:p-16">
+      <FadeIn className="grid gap-10 rounded-[48px] bg-paper p-6 sm:p-10 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:rounded-[64px] lg:p-16">
         <h2 className="display display-lg">
           Got an idea?
           <br />
@@ -24,7 +25,7 @@ export function ContactCta({ body }: { body: string }) {
             </a>
           </div>
         </div>
-      </div>
+      </FadeIn>
     </section>
   )
 }

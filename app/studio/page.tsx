@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { RiseLines } from "@/components/rise-lines"
 import { ContactCta } from "@/components/contact-cta"
+import { FadeIn } from "@/components/motion"
 import { getPlayStoreApps, summarizeApps } from "@/lib/play-store"
 
 export const metadata: Metadata = {
@@ -70,33 +71,35 @@ export default async function StudioPage() {
         </section>
 
         <section className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
-          <div className="rounded-[40px] bg-ink p-6 text-paper sm:p-10 lg:rounded-[64px] lg:p-16">
+          <FadeIn className="rounded-[40px] bg-ink p-6 text-paper sm:p-10 lg:rounded-[64px] lg:p-16">
             <p className="mono-label text-smoke">Our mission</p>
             <p className="display display-md mt-6 max-w-5xl">
               Build useful Android apps, ship them fast, and make them better with every
               release.
             </p>
-          </div>
+          </FadeIn>
         </section>
 
         <section className="mx-auto w-full max-w-[1200px] px-4 py-20 sm:px-6 lg:py-24">
-          <h2 className="display display-lg max-w-2xl">What makes them different</h2>
+          <FadeIn>
+            <h2 className="display display-lg max-w-2xl">What makes them different</h2>
+          </FadeIn>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:gap-6">
-            {highlights.map((item) => {
+            {highlights.map((item, i) => {
               const Icon = item.icon
               return (
-                <div key={item.title} className="rounded-[32px] bg-paper p-6 sm:p-8">
+                <FadeIn key={item.title} delay={(i % 2) * 0.08} className="rounded-[32px] bg-paper p-6 sm:p-8">
                   <Icon className="h-7 w-7" strokeWidth={1.25} aria-hidden />
                   <h3 className="heading mt-10 text-[28px]">{item.title}</h3>
                   <p className="mt-3 max-w-sm leading-[1.25] text-slate">{item.body}</p>
-                </div>
+                </FadeIn>
               )
             })}
           </div>
         </section>
 
         <section className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
-          <div className="grid gap-8 border-t border-ash pt-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+          <FadeIn className="grid gap-8 border-t border-ash pt-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
             <h2 className="heading text-[40px]">A small team, led by developers who ship.</h2>
             <div className="max-w-xl space-y-5 text-lg leading-[1.33] text-slate">
               <p>
@@ -109,7 +112,7 @@ export default async function StudioPage() {
                 Google Play under DEVLOGS (SMC-PRIVATE) LIMITED.
               </p>
             </div>
-          </div>
+          </FadeIn>
         </section>
 
         <ContactCta body="Feedback, a partnership, or something you want built. Tell us what you are working on. We read everything and reply fast." />

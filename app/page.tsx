@@ -6,6 +6,7 @@ import { IconWall } from "@/components/icon-wall"
 import { RiseLines } from "@/components/rise-lines"
 import { ContactCta } from "@/components/contact-cta"
 import { EmptyApps } from "@/components/empty-apps"
+import { ArcSection, CountUp, FadeIn } from "@/components/motion"
 import { getPlayStoreApps, summarizeApps } from "@/lib/play-store"
 
 export default async function HomePage() {
@@ -53,9 +54,9 @@ export default async function HomePage() {
         </section>
 
         {/* Selected apps: black top-arc block rising from below the hero */}
-        <section className="rounded-t-[40px] bg-ink text-paper lg:rounded-t-[64px]">
+        <ArcSection>
           <div className="mx-auto w-full max-w-[1200px] px-4 pb-20 pt-16 sm:px-6 lg:pb-24 lg:pt-24">
-            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+            <FadeIn className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
               <div>
                 <h2 className="display display-lg">Most downloaded.</h2>
                 <p className="mt-5 max-w-md leading-[1.25] text-smoke">
@@ -69,15 +70,17 @@ export default async function HomePage() {
               >
                 View all {summary.appCount > 0 ? summary.appCount : ""} apps
               </Link>
-            </div>
+            </FadeIn>
 
             <div className="mt-12">
               {featured.length === 0 ? (
                 <EmptyApps />
               ) : (
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-                  {featured.map((app) => (
-                    <AppCard key={app.appId} app={app} className="text-ink" />
+                  {featured.map((app, i) => (
+                    <FadeIn key={app.appId} delay={(i % 3) * 0.08} className="h-full">
+                      <AppCard app={app} className="h-full text-ink" />
+                    </FadeIn>
                   ))}
                 </div>
               )}
@@ -92,13 +95,15 @@ export default async function HomePage() {
                 ].map((stat) => (
                   <div key={stat.label} className="flex flex-col-reverse gap-3">
                     <dt className="mono-label text-smoke">{stat.label}</dt>
-                    <dd className="display display-lg">{stat.value}</dd>
+                    <dd className="display display-lg">
+                      <CountUp value={stat.value} />
+                    </dd>
                   </div>
                 ))}
               </dl>
             )}
           </div>
-        </section>
+        </ArcSection>
 
         <ContactCta body="We are a small team and we read everything. Tell us what you are building or using, and we will get back fast." />
       </main>
