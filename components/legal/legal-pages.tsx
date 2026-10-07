@@ -17,7 +17,7 @@ export function PrivacyAppPage({
   return (
     <LegalShell
       kind="Privacy Policy"
-      headline={<span className="text-brand italic">{appName}</span>}
+      headline={appName}
       intro={`How the ${appName} app collects, uses and protects your data, and the control you have over it.`}
       lastUpdated={LEGAL_LAST_UPDATED}
       badge="Google Play"
@@ -33,7 +33,7 @@ export function TermsAppPage({ appName }: { appName: string }) {
   return (
     <LegalShell
       kind="Terms & Conditions"
-      headline={<span className="text-brand italic">{appName}</span>}
+      headline={appName}
       intro={`The terms that apply when you download and use the ${appName} app.`}
       lastUpdated={LEGAL_LAST_UPDATED}
       badge="Google Play"
@@ -50,7 +50,7 @@ export function TermsCommonPage() {
       kind="Terms & Conditions"
       headline={
         <>
-          The terms behind <span className="text-brand italic">our apps.</span>
+          The terms behind our apps.
         </>
       }
       intro="The agreement between you and DevLogs when you use any of the apps we publish."

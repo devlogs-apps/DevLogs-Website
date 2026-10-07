@@ -1,122 +1,51 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Class-based dark mode for next-themes (attribute="class"). Required in v4
-   so `dark:` utilities used by shadcn components actually trigger. */
 @custom-variant dark (&:is(.dark *));
 
 /* ------------------------------------------------------------------ *
- * DevLogs — violet -> orange brand system (matches the logo mark)
+ * DevLogs — flat editorial system on warm gray.
+ * Depth comes from surface contrast (canvas -> white -> black), never
+ * from shadows or gradients. Mint and yellow are accent-only.
  * ------------------------------------------------------------------ */
 
 :root {
-  --radius: 1.25rem;
+  --radius: 1.5rem;
 
-  /* Warm paper */
-  --background: oklch(0.98 0.006 70);
-  --foreground: oklch(0.22 0.03 285);
+  --canvas: #e5e5e5;
+  --paper: #ffffff;
+  --ink: #000000;
+  --mist: #f3f3f3;
+  --ash: #c6c6c6;
+  --smoke: #979797;
+  --slate: #444444;
+  --graphite: #2f2f2f;
+  --mint: #d1ffca;
+  --voltage: #fff100;
 
-  --card: oklch(0.995 0.004 80);
-  --card-foreground: oklch(0.22 0.03 285);
-  --popover: oklch(0.995 0.004 80);
-  --popover-foreground: oklch(0.22 0.03 285);
+  /* shadcn semantic tokens */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--mist);
+  --secondary-foreground: var(--ink);
+  --muted: var(--mist);
+  --muted-foreground: var(--slate);
+  --accent: var(--mist);
+  --accent-foreground: var(--ink);
+  --destructive: #c4241b;
+  --destructive-foreground: var(--paper);
+  --border: var(--ash);
+  --input: var(--ash);
+  --ring: var(--ink);
 
-  /* Logo violet */
-  --primary: oklch(0.53 0.23 288);
-  --primary-foreground: oklch(0.99 0.005 80);
-
-  /* Logo orange */
-  --accent-warm: oklch(0.66 0.19 48);
-  --accent-warm-foreground: oklch(0.99 0.005 80);
-
-  --secondary: oklch(0.955 0.01 70);
-  --secondary-foreground: oklch(0.3 0.03 285);
-
-  --muted: oklch(0.955 0.01 70);
-  --muted-foreground: oklch(0.5 0.025 60);
-
-  --accent: oklch(0.94 0.02 290);
-  --accent-foreground: oklch(0.3 0.04 290);
-
-  --destructive: oklch(0.58 0.22 27);
-  --destructive-foreground: oklch(0.99 0.005 80);
-
-  --border: oklch(0.22 0.03 285 / 0.1);
-  --input: oklch(0.22 0.03 285 / 0.14);
-  --ring: oklch(0.53 0.23 288);
-
-  /* Atmosphere */
-  --aurora-1: oklch(0.6 0.2 290 / 0.16);
-  --aurora-2: oklch(0.7 0.18 48 / 0.16);
-  --galaxy-line: oklch(0.22 0.03 285 / 0.1);
-  --star: oklch(0.38 0.04 285 / 0.55);
-  --grid-line: oklch(0.22 0.03 285 / 0.05);
-
-  /* Brand gradient: violet -> magenta -> orange (matches the logo, no muddy mid) */
-  --brand-mid: oklch(0.6 0.26 350);
-  --brand-gradient: linear-gradient(
-    100deg,
-    var(--primary) 0%,
-    var(--brand-mid) 50%,
-    var(--accent-warm) 100%
-  );
-
-  /* Glass */
-  --glass-bg: oklch(1 0 0 / 0.55);
-  --glass-border: oklch(0.3 0.03 285 / 0.1);
-  --glass-sheen: oklch(1 0 0 / 0.65);
-  --glass-shadow: oklch(0.25 0.05 285 / 0.16);
+  --ease-out-heavy: cubic-bezier(0.32, 0.72, 0, 1);
 }
-
-.dark {
-  /* Deep galactic violet-black */
-  --background: oklch(0.09 0.018 285);
-  --foreground: oklch(0.95 0.012 290);
-
-  --card: oklch(0.135 0.02 287);
-  --card-foreground: oklch(0.95 0.012 290);
-  --popover: oklch(0.125 0.02 287);
-  --popover-foreground: oklch(0.95 0.012 290);
-
-  --primary: oklch(0.72 0.19 290);
-  --primary-foreground: oklch(0.12 0.02 285);
-
-  --accent-warm: oklch(0.74 0.17 55);
-  --accent-warm-foreground: oklch(0.12 0.02 285);
-
-  --secondary: oklch(0.19 0.022 287);
-  --secondary-foreground: oklch(0.95 0.012 290);
-
-  --muted: oklch(0.175 0.02 287);
-  --muted-foreground: oklch(0.68 0.025 288);
-
-  --accent: oklch(0.24 0.035 290);
-  --accent-foreground: oklch(0.95 0.012 290);
-
-  --destructive: oklch(0.62 0.21 25);
-  --destructive-foreground: oklch(0.95 0.012 290);
-
-  --border: oklch(0.92 0.02 290 / 0.1);
-  --input: oklch(0.92 0.02 290 / 0.14);
-  --ring: oklch(0.72 0.19 290);
-
-  --aurora-1: oklch(0.72 0.2 290 / 0.26);
-  --aurora-2: oklch(0.72 0.17 52 / 0.22);
-  --galaxy-line: oklch(0.92 0.02 290 / 0.12);
-  --star: oklch(0.96 0.02 290 / 0.7);
-  --grid-line: oklch(0.92 0.02 290 / 0.05);
-
-  --brand-mid: oklch(0.7 0.26 350);
-
-  --glass-bg: oklch(0.17 0.022 287 / 0.5);
-  --glass-border: oklch(0.95 0.02 290 / 0.12);
-  --glass-sheen: oklch(1 0 0 / 0.07);
-  --glass-shadow: oklch(0 0 0 / 0.5);
-}
-
-/* ------------------------------------------------------------------ *
- * Tailwind v4 token mapping
- * ------------------------------------------------------------------ */
 
 @theme inline {
   --color-background: var(--background);
@@ -127,8 +56,6 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-accent-warm: var(--accent-warm);
-  --color-accent-warm-foreground: var(--accent-warm-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -141,93 +68,29 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
+  --color-canvas: var(--canvas);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-mist: var(--mist);
+  --color-ash: var(--ash);
+  --color-smoke: var(--smoke);
+  --color-slate: var(--slate);
+  --color-graphite: var(--graphite);
+  --color-mint: var(--mint);
+  --color-voltage: var(--voltage);
+
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
 
-  --radius-sm: calc(var(--radius) - 10px);
-  --radius-md: calc(var(--radius) - 6px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
 
-  --animate-marquee-x: marquee-x 46s linear infinite;
-  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --ease-heavy: var(--ease-out-heavy);
 }
-
-@keyframes marquee-x {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes galaxy-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes galaxy-spin-rev {
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes galaxy-pulse {
-  0%,
-  100% {
-    opacity: 0.85;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.06);
-  }
-}
-
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-@keyframes float-y {
-  0%,
-  100% {
-    transform: translate(-50%, -50%);
-  }
-  50% {
-    transform: translate(-50%, calc(-50% - 8px));
-  }
-}
-
-@keyframes orbit-rotate {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* ------------------------------------------------------------------ *
- * Base layer
- * ------------------------------------------------------------------ */
 
 @layer base {
   * {
@@ -239,17 +102,17 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* Paper grain on the canvas only; cards and black blocks paint over it. */
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-feature-settings: "ss01", "cv01", "cv03";
+    background-color: var(--canvas);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .32 0 0 0 -.13'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    color: var(--ink);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.011em;
     overflow-x: hidden;
   }
 
-  /* Long unbroken strings (emails, app names) never force horizontal scroll */
   h1,
   h2,
   h3 {
@@ -257,270 +120,90 @@
   }
 
   ::selection {
-    background-color: color-mix(in oklch, var(--color-primary) 30%, transparent);
-    color: var(--color-foreground);
+    background-color: var(--mint);
+    color: var(--ink);
   }
 
-  .font-serif {
-    letter-spacing: -0.022em;
-    font-weight: 400;
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
   }
 }
 
 /* ------------------------------------------------------------------ *
- * Brand helpers
+ * Type roles
  * ------------------------------------------------------------------ */
 
-/* Violet -> magenta -> orange gradient text, taken from the logo */
-.text-brand {
-  background-image: var(--brand-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Condensed uppercase display. Never set below 48px. */
+.display {
+  font-family: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
 }
 
-.bg-brand {
-  background-image: var(--brand-gradient);
+.display-xl {
+  font-size: clamp(3.5rem, 11vw, 8.125rem);
+}
+
+.display-lg {
+  font-size: clamp(3rem, 7vw, 5rem);
+}
+
+.display-md {
+  font-size: clamp(3rem, 5vw, 4rem);
+}
+
+/* Secondary uppercase heading in the body face */
+.heading {
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.mono-label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: -0.03em;
 }
 
 /* ------------------------------------------------------------------ *
- * Glass surfaces
+ * Entrance: headline lines rise from a mask, icons pop in after.
+ * CSS-only so content never waits on hydration.
  * ------------------------------------------------------------------ */
 
-.glass {
-  background-color: var(--glass-bg);
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    inset 0 1px 0 0 var(--glass-sheen),
-    0 22px 55px -34px var(--glass-shadow);
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
 }
 
-.glass-hover {
-  transition:
-    border-color 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+  }
 }
 
-.glass-hover:hover {
-  border-color: color-mix(in oklch, var(--primary) 55%, transparent);
-  box-shadow:
-    inset 0 1px 0 0 var(--glass-sheen),
-    0 30px 70px -34px color-mix(in oklch, var(--primary) 45%, transparent);
+.rise {
+  animation: rise 0.9s var(--ease-out-heavy) both;
+  animation-delay: calc(0.08s + var(--i, 0) * 0.09s);
 }
 
-/* Soft aurora wash (violet + orange) */
-.aurora {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(58% 55% at 18% 12%, var(--aurora-1) 0%, transparent 60%),
-    radial-gradient(46% 50% at 84% 26%, var(--aurora-2) 0%, transparent 60%),
-    radial-gradient(55% 60% at 66% 96%, var(--aurora-1) 0%, transparent 65%);
-  filter: blur(10px);
-}
-
-/* ------------------------------------------------------------------ *
- * Circle galaxy (hero backdrop)
- * ------------------------------------------------------------------ */
-
-.galaxy {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.galaxy-core {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: clamp(20rem, 42vw, 38rem);
-  aspect-ratio: 1;
-  border-radius: 9999px;
-  background: radial-gradient(
-    circle,
-    var(--aurora-2) 0%,
-    var(--aurora-1) 38%,
-    transparent 70%
-  );
-  filter: blur(14px);
-  animation: galaxy-pulse 9s ease-in-out infinite;
-}
-
-.galaxy-ring {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: var(--size);
-  height: var(--size);
-  border-radius: 9999px;
-  border: 1px solid var(--galaxy-line);
-  animation: galaxy-spin var(--dur, 40s) linear infinite;
-}
-
-.galaxy-ring--rev {
-  animation-name: galaxy-spin-rev;
-}
-
-/* orbiting node sitting on the ring */
-.galaxy-ring::before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: 50%;
-  width: 6px;
-  height: 6px;
-  translate: -50% 0;
-  border-radius: 9999px;
-  background: var(--node, var(--primary));
-  box-shadow: 0 0 14px 2px
-    color-mix(in oklch, var(--node, var(--primary)) 65%, transparent);
-}
-
-.starfield {
-  position: absolute;
-  inset: -10%;
-  background-image:
-    radial-gradient(1.4px 1.4px at 12% 22%, var(--star), transparent 60%),
-    radial-gradient(1px 1px at 28% 68%, var(--star), transparent 60%),
-    radial-gradient(1.6px 1.6px at 44% 14%, var(--star), transparent 60%),
-    radial-gradient(1px 1px at 58% 52%, var(--star), transparent 60%),
-    radial-gradient(1.3px 1.3px at 72% 30%, var(--star), transparent 60%),
-    radial-gradient(1px 1px at 84% 74%, var(--star), transparent 60%),
-    radial-gradient(1.5px 1.5px at 9% 84%, var(--star), transparent 60%),
-    radial-gradient(1px 1px at 36% 90%, var(--star), transparent 60%),
-    radial-gradient(1.2px 1.2px at 66% 88%, var(--star), transparent 60%),
-    radial-gradient(1px 1px at 92% 18%, var(--star), transparent 60%),
-    radial-gradient(1.3px 1.3px at 20% 46%, var(--star), transparent 60%),
-    radial-gradient(1px 1px at 50% 76%, var(--star), transparent 60%);
-  animation: twinkle 6s ease-in-out infinite;
-  mask-image: radial-gradient(circle at center, black 30%, transparent 78%);
-  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 78%);
-}
-
-/* ------------------------------------------------------------------ *
- * Texture utilities
- * ------------------------------------------------------------------ */
-
-.bg-grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.dark .bg-grain::after {
-  opacity: 0.06;
-}
-
-.dotted-grid {
-  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
-  background-size: 22px 22px;
-}
-
-.animate-marquee-x {
-  animation: var(--animate-marquee-x);
-}
-
-.marquee-mask {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 8%,
-    black 92%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 8%,
-    black 92%,
-    transparent
-  );
-}
-
-/* ------------------------------------------------------------------ *
- * App orbit (hero constellation)
- * ------------------------------------------------------------------ */
-
-.orbit-ring {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: var(--size);
-  height: var(--size);
-  border-radius: 9999px;
-  border: 1px solid var(--galaxy-line);
-}
-
-.orbit-spin {
-  position: absolute;
-  inset: 0;
-  animation: orbit-rotate var(--dur, 60s) linear infinite;
-}
-
-/* A sized circle that revolves; carries one logo around its radius */
-.orbit-carrier {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: var(--size);
-  height: var(--size);
-  animation: orbit-rotate var(--dur, 60s) linear infinite;
-  animation-delay: var(--delay, 0s);
-}
-
-/* Sits at the top of the carrier circle, i.e. on the ring */
-.orbit-planet {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Counter-rotates so the logo stays upright while it orbits */
-.orbit-face {
-  animation: orbit-rotate var(--dur, 60s) linear infinite reverse;
-  animation-delay: var(--delay, 0s);
-}
-
-.orbit-glow {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 64%;
-  aspect-ratio: 1;
-  translate: -50% -50%;
-  border-radius: 9999px;
-  background: radial-gradient(
-    circle,
-    var(--aurora-2) 0%,
-    var(--aurora-1) 42%,
-    transparent 72%
-  );
-  filter: blur(8px);
-  animation: galaxy-pulse 9s ease-in-out infinite;
+.pop {
+  animation: pop 0.9s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+  animation-delay: calc(0.35s + var(--i, 0) * 0.06s);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee-x,
-  .galaxy-ring,
-  .galaxy-core,
-  .starfield,
-  .orbit-carrier,
-  .orbit-face,
-  .orbit-spin,
-  .orbit-glow {
-    animation: none;
-  }
   html {
     scroll-behavior: auto;
+  }
+  .rise,
+  .pop {
+    animation: none;
   }
 }

@@ -31,32 +31,25 @@ export function LegalShell({
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        {/* Hero */}
-        <section className="bg-grain relative overflow-hidden pb-12 pt-32 sm:pt-40">
-          <div className="aurora opacity-70" aria-hidden />
-          <div className="relative mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
-            <SectionLabel>{kind}</SectionLabel>
-            <h1 className="mt-5 max-w-3xl font-serif text-4xl leading-[1] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              {headline}
-            </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              {intro}
-            </p>
-            <div className="mt-7 flex flex-wrap items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-              <span className="glass rounded-full px-3 py-1">Updated {lastUpdated}</span>
-              <span className="glass rounded-full px-3 py-1">{badge}</span>
-            </div>
+        <section className="mx-auto w-full max-w-[1200px] px-4 pb-12 pt-6 sm:px-6 lg:pt-10">
+          <SectionLabel>{kind}</SectionLabel>
+          <h1 className="display display-lg mt-5 max-w-4xl">{headline}</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-[1.33] text-slate">{intro}</p>
+          <div className="mt-7 flex flex-wrap items-center gap-2 text-sm font-medium">
+            <span className="rounded-[64px] bg-paper px-3 py-1">Updated {lastUpdated}</span>
+            <span className="rounded-[64px] bg-mint px-3 py-1">{badge}</span>
           </div>
         </section>
 
-        {/* Body */}
-        <section className="mx-auto w-full max-w-5xl px-4 pb-28 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-[220px_1fr]">
+        <section className="mx-auto w-full max-w-[1200px] px-4 pb-24 sm:px-6">
+          <div className="grid gap-6 lg:grid-cols-[240px_1fr] lg:gap-10">
             <aside className="hidden lg:block">
               <LegalToc toc={toc} />
             </aside>
 
-            <div className="min-w-0 space-y-14">{children}</div>
+            <div className="min-w-0 space-y-14 rounded-[32px] bg-paper p-6 sm:p-10 lg:p-14">
+              {children}
+            </div>
           </div>
         </section>
       </main>
@@ -80,13 +73,15 @@ export function LegalSection({
 }) {
   return (
     <section id={id} className="scroll-mt-28">
-      <h2 className="font-serif text-3xl leading-tight tracking-tight text-foreground sm:text-[2rem]">
+      <h2 className="heading text-[28px]">
         {number != null ? (
-          <span className="mr-3 text-brand tabular-nums">{number}.</span>
+          <span className="mr-3 font-mono text-base font-normal tabular-nums text-slate">
+            {String(number).padStart(2, "0")}
+          </span>
         ) : null}
         {title}
       </h2>
-      <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-muted-foreground [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_strong]:font-medium [&_strong]:text-foreground">
+      <div className="mt-5 space-y-4 text-base leading-[1.5] text-slate [&_a]:text-ink [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:bg-mint [&_strong]:font-medium [&_strong]:text-ink">
         {children}
       </div>
     </section>
@@ -104,14 +99,14 @@ export function Callout({
 }) {
   return (
     <div
-      className={cn("glass rounded-2xl p-5", className)}
+      className={cn("rounded-[24px] bg-mist p-5 sm:p-6", className)}
     >
       {title ? (
-        <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-primary">
+        <p className="mono-label mb-2 text-slate">
           {title}
         </p>
       ) : null}
-      <div className="text-sm leading-relaxed text-foreground/90">{children}</div>
+      <div className="leading-[1.5] text-ink">{children}</div>
     </div>
   )
 }
@@ -122,10 +117,10 @@ export function InfoGrid({ items }: { items: { title: string; body: ReactNode }[
       {items.map((item) => (
         <div
           key={item.title}
-          className="glass glass-hover rounded-2xl p-4"
+          className="rounded-[24px] bg-mist p-5"
         >
-          <p className="font-medium text-foreground">{item.title}</p>
-          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+          <p className="font-medium text-ink">{item.title}</p>
+          <p className="mt-1.5 text-sm leading-[1.4] text-slate">
             {item.body}
           </p>
         </div>
@@ -139,10 +134,10 @@ export function Clauses({ section, items }: { section: number; items: ReactNode[
     <ol className="space-y-3">
       {items.map((item, i) => (
         <li key={i} className="flex gap-3">
-          <span className="shrink-0 pt-px font-mono text-sm tabular-nums text-primary">
+          <span className="shrink-0 pt-0.5 font-mono text-sm tabular-nums text-ink">
             {section}.{i + 1}
           </span>
-          <span className="text-[15px] leading-relaxed text-muted-foreground">
+          <span className="leading-[1.5] text-slate">
             {item}
           </span>
         </li>
@@ -156,8 +151,8 @@ export function Bullets({ items }: { items: ReactNode[] }) {
     <ul className="space-y-2.5">
       {items.map((item, i) => (
         <li key={i} className="flex gap-3">
-          <span className="bg-brand mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full" aria-hidden />
-          <span className="text-[15px] leading-relaxed text-muted-foreground">
+          <span className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 bg-ink" aria-hidden />
+          <span className="leading-[1.5] text-slate">
             {item}
           </span>
         </li>

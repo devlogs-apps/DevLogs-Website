@@ -4,7 +4,6 @@ import { useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
-import { ArrowUpRight } from "lucide-react"
 import {
   Form,
   FormControl,
@@ -47,13 +46,13 @@ export function ContactForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                <FormLabel className="mono-label text-slate">
                   Name
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Ada Lovelace"
-                    className="h-11 rounded-xl border-border bg-background/50"
+                    className="h-12 rounded-xl border-transparent bg-mist shadow-none focus-visible:border-ink focus-visible:ring-0"
                     {...field}
                   />
                 </FormControl>
@@ -66,14 +65,14 @@ export function ContactForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                <FormLabel className="mono-label text-slate">
                   Email
                 </FormLabel>
                 <FormControl>
                   <Input
                     type="email"
                     placeholder="you@example.com"
-                    className="h-11 rounded-xl border-border bg-background/50"
+                    className="h-12 rounded-xl border-transparent bg-mist shadow-none focus-visible:border-ink focus-visible:ring-0"
                     {...field}
                   />
                 </FormControl>
@@ -88,13 +87,13 @@ export function ContactForm() {
           name="subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                Subject <span className="normal-case tracking-normal">(optional)</span>
+              <FormLabel className="mono-label text-slate">
+                Subject (optional)
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder="A bug, an idea, a collaboration…"
-                  className="h-11 rounded-xl border-border bg-background/50"
+                  className="h-12 rounded-xl border-transparent bg-mist shadow-none focus-visible:border-ink focus-visible:ring-0"
                   {...field}
                 />
               </FormControl>
@@ -108,14 +107,14 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              <FormLabel className="mono-label text-slate">
                 Message
               </FormLabel>
               <FormControl>
                 <Textarea
                   rows={6}
                   placeholder="Tell us what's on your mind…"
-                  className="resize-none rounded-xl border-border bg-background/50"
+                  className="resize-none rounded-xl border-transparent bg-mist shadow-none focus-visible:border-ink focus-visible:ring-0"
                   {...field}
                 />
               </FormControl>
@@ -127,13 +126,12 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="bg-brand group inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="w-full rounded-lg bg-ink px-6 py-4 font-medium text-paper transition-transform duration-300 ease-heavy active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? "Sending…" : "Send message"}
-          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </button>
 
-        <p className="text-center text-xs text-muted-foreground">
+        <p className="text-center text-sm text-slate">
           We only use your details to reply to this message.
         </p>
       </form>

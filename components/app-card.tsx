@@ -1,77 +1,71 @@
 import Image from "next/image"
-import { ArrowUpRight, Download, Star } from "lucide-react"
-import type { PlayStoreApp } from "@/lib/play-store"
+import { ArrowUpRight, Star } from "lucide-react"
+import { formatCount, type PlayStoreApp } from "@/lib/play-store"
 import { cn } from "@/lib/utils"
 
 export function AppCard({ app, className }: { app: PlayStoreApp; className?: string }) {
   return (
-    <article
-      className={cn(
-        "group glass glass-hover relative flex flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1",
-        className,
-      )}
-    >
-      {/* Feature graphic (16:9) with a fade into the card */}
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-secondary">
+    <article className={cn("group flex flex-col rounded-[32px] bg-paper p-2", className)}>
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[24px] bg-mist">
         {app.featureGraphic ? (
           <Image
             src={app.featureGraphic}
             alt=""
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+            className="object-cover transition-transform duration-700 ease-heavy group-hover:scale-[1.04]"
           />
         ) : (
-          <div className="bg-brand absolute inset-0 opacity-25" />
+          <Image
+            src={app.icon}
+            alt=""
+            width={96}
+            height={96}
+            className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-[24px]"
+          />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent" />
       </div>
 
-      {/* Icon (gradient ring) overlapping upward into the graphic */}
-      <div className="relative z-10 -mt-10 flex items-end justify-between px-5">
-        <span className="bg-brand rounded-2xl p-px shadow-xl shadow-primary/20">
-          <span className="block overflow-hidden rounded-[15px] bg-card p-1">
-            <Image
-              src={app.icon}
-              alt={`${app.title} icon`}
-              width={64}
-              height={64}
-              className="h-14 w-14 rounded-xl object-cover"
-            />
-          </span>
-        </span>
-      </div>
+      <div className="flex flex-1 flex-col px-4 pb-4 pt-5">
+        <div className="flex items-center gap-3.5">
+          <Image
+            src={app.icon}
+            alt=""
+            width={56}
+            height={56}
+            className="h-14 w-14 shrink-0 rounded-[16px] object-cover"
+          />
+          <h3 className="heading text-xl">{app.title}</h3>
+        </div>
 
-      <div className="flex flex-1 flex-col px-5 pb-5 pt-4">
-        <h3 className="font-serif text-[1.7rem] leading-none tracking-tight text-foreground">
-          {app.title}
-        </h3>
-        <p className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-3 line-clamp-2 text-sm leading-[1.3] text-slate">
           {app.summary || "Available now on Google Play."}
         </p>
 
-        {/* Meta row */}
-        <div className="mt-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1">
-            <Star className="h-3 w-3 fill-accent-warm text-accent-warm" />
+        <div className="mb-5 mt-4 flex flex-wrap gap-2 text-sm font-medium">
+          <span className="inline-flex items-center gap-1.5 rounded-[64px] bg-mint px-3 py-1">
+            <Star className="h-3.5 w-3.5 fill-current" strokeWidth={1.5} aria-hidden />
             {app.scoreText ?? "New"}
+            <span className="sr-only">rating</span>
           </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1">
-            <Download className="h-3 w-3 text-primary" />
-            {app.installs ?? "New"}
-          </span>
+          {app.installs != null && (
+            <span className="rounded-[64px] bg-mist px-3 py-1">
+              {formatCount(app.installs)} {app.installs === 1 ? "download" : "downloads"}
+            </span>
+          )}
         </div>
 
-        {/* Install CTA */}
         <a
           href={app.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group/btn mt-5 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-border bg-secondary px-4 py-2.5 text-sm font-medium text-foreground transition-all hover:border-transparent hover:[background-image:linear-gradient(104deg,var(--primary),var(--accent-warm))] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label={`Install ${app.title} on Google Play`}
+          className="group/btn mt-auto flex items-center justify-between rounded-lg bg-ink py-2 pl-5 pr-2 text-[15px] font-medium text-paper transition-transform duration-300 ease-heavy active:scale-[0.98]"
         >
-          Install on Play Store
-          <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
+          Install on Google Play
+          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-graphite transition-transform duration-500 ease-heavy group-hover/btn:-translate-y-px group-hover/btn:translate-x-0.5">
+            <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} aria-hidden />
+          </span>
         </a>
       </div>
     </article>

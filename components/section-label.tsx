@@ -8,13 +8,8 @@ export function SectionLabel({
   className?: string
 }) {
   return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.24em] text-muted-foreground",
-        className,
-      )}
-    >
-      <span className="bg-brand h-1.5 w-1.5 rounded-full" aria-hidden />
+    <span className={cn("mono-label inline-flex items-center gap-2 text-slate", className)}>
+      <span className="h-1.5 w-1.5 bg-current" aria-hidden />
       {children}
     </span>
   )

@@ -54,8 +54,8 @@ export function LegalToc({ toc }: { toc: TocItem[] }) {
   }, [toc])
 
   return (
-    <nav className="sticky top-24" aria-label="On this page">
-      <p className="mb-3 px-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+    <nav className="sticky top-8" aria-label="On this page">
+      <p className="mono-label mb-3 px-3 text-slate">
         Contents
       </p>
       <ul className="space-y-0.5">
@@ -67,19 +67,12 @@ export function LegalToc({ toc }: { toc: TocItem[] }) {
                 href={`#${t.id}`}
                 aria-current={isActive ? "true" : undefined}
                 className={cn(
-                  "flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors",
+                  "block rounded-lg px-3 py-1.5 text-sm transition-colors",
                   isActive
-                    ? "bg-card/70 font-medium text-primary"
-                    : "text-muted-foreground hover:bg-card/60 hover:text-primary"
+                    ? "bg-ink font-medium text-paper"
+                    : "text-slate hover:bg-paper hover:text-ink"
                 )}
               >
-                <span
-                  aria-hidden
-                  className={cn(
-                    "h-3.5 w-0.5 shrink-0 rounded-full transition-colors",
-                    isActive ? "bg-brand" : "bg-transparent"
-                  )}
-                />
                 {t.label}
               </a>
             </li>

@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
       headline={
         <>
           How DevLogs handles{" "}
-          <span className="text-brand italic">your data.</span>
+          your data.
         </>
       }
       intro="One privacy policy for every app we publish. It explains what we collect, why, and the control you have over it."
