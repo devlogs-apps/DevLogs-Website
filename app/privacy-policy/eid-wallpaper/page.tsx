@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { PrivacyAppPage } from "@/components/legal/legal-pages"
 
-const APP = "Eid Wallpaper HD"
+const APP = "Eid Milad Un Nabi Photo Frames"
 
 export const metadata: Metadata = {
   title: `Privacy Policy · ${APP}`,

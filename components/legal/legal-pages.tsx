@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { Callout, LegalShell, LEGAL_LAST_UPDATED } from "./legal-shell"
+import { Callout, LegalShell, LEGAL_LAST_UPDATED, PRIVACY_LAST_UPDATED } from "./legal-shell"
 import { PRIVACY_TOC, PrivacyContent } from "./privacy-content"
 import { TERMS_TOC, TermsContent } from "./terms-content"
 
@@ -19,7 +19,7 @@ export function PrivacyAppPage({
       kind="Privacy Policy"
       headline={appName}
       intro={`How the ${appName} app collects, uses and protects your data, and the control you have over it.`}
-      lastUpdated={LEGAL_LAST_UPDATED}
+      lastUpdated={PRIVACY_LAST_UPDATED}
       badge="Google Play"
       toc={PRIVACY_TOC}
     >

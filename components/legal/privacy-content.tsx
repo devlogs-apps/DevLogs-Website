@@ -9,15 +9,16 @@ export const PRIVACY_TOC: TocItem[] = [
   { id: "how-we-use", label: "5. How we use information" },
   { id: "legal-bases", label: "6. Legal bases" },
   { id: "advertising", label: "7. Ads and analytics" },
-  { id: "sharing", label: "8. How we share" },
-  { id: "transfers", label: "9. International transfers" },
-  { id: "retention", label: "10. Data retention" },
-  { id: "security", label: "11. Security" },
-  { id: "your-rights", label: "12. Your rights" },
-  { id: "children", label: "13. Children" },
-  { id: "platforms", label: "14. Google Play" },
-  { id: "changes", label: "15. Changes" },
-  { id: "contact", label: "16. Contact" },
+  { id: "purchases", label: "8. In-app purchases" },
+  { id: "sharing", label: "9. How we share" },
+  { id: "transfers", label: "10. International transfers" },
+  { id: "retention", label: "11. Data retention" },
+  { id: "security", label: "12. Security" },
+  { id: "your-rights", label: "13. Your rights" },
+  { id: "children", label: "14. Children" },
+  { id: "platforms", label: "15. Google Play" },
+  { id: "changes", label: "16. Changes" },
+  { id: "contact", label: "17. Contact" },
 ]
 
 export function PrivacyContent({
@@ -42,7 +43,7 @@ export function PrivacyContent({
               <strong>{SITE.legalName}</strong> (&quot;DevLogs&quot;, &quot;we&quot;,
               &quot;us&quot; or &quot;our&quot;) collects, uses, discloses and protects
               personal data when you use {app} and related services published on Google
-              Play.
+              Play under the developer name <strong>&quot;Dev Logs&quot;</strong>.
             </>,
             <>
               We are committed to processing personal data in accordance with applicable
@@ -74,8 +75,9 @@ export function PrivacyContent({
               We build a range of mobile apps, from personalization and games to everyday
               tools and utilities. You do not need an account to use them. We keep data
               collection to the minimum needed to run the app, show ads in free versions,
-              fix crashes, and understand basic usage. We do not sell your personal
-              information.
+              fix crashes, and understand basic usage. Optional purchases, where offered,
+              are processed by Google Play, so we never see your card details. We do not
+              sell your personal information.
             </>
           )}
         </Callout>
@@ -157,12 +159,21 @@ export function PrivacyContent({
                   title: "4.4 Advertising identifiers",
                   body: "In free versions, advertising partners may use a resettable advertising identifier (Google Advertising ID) and coarse data such as country derived from your IP address.",
                 },
+            {
+              title: "4.5 Photos and images you choose",
+              body: "Photo frame and editor apps open only the photos you pick, using Android's photo picker or a permission you grant. Editing happens on your device and results are saved to your device. Your photos are never uploaded to us.",
+            },
+            {
+              title: "4.6 Purchase information",
+              body: "If you buy something in an app, Google Play shares the order ID, the product and the purchase status with us so we can deliver and restore it. We never receive your card or bank details. See Section 8.",
+            },
           ]}
         />
         <Callout title="Information we never collect">
           We do not collect your name (unless you email us), precise GPS location, your
-          contacts, your photo library, microphone audio, payment or financial details,
-          health data, or login credentials. We do not require you to create an account.
+          contacts, microphone audio, payment card or bank details, health data, or login
+          credentials, and we never upload your photos. We do not require you to create an
+          account.
           {childDirected ? (
             <>
               {" "}
@@ -172,6 +183,37 @@ export function PrivacyContent({
             </>
           ) : null}
         </Callout>
+        <p>
+          Our apps only request the Android permissions a feature needs. Depending on the
+          app, these may include:
+        </p>
+        <Bullets
+          items={[
+            <>
+              <strong>Internet and network state</strong>, to load content, show ads,
+              verify purchases and send crash reports.
+            </>,
+            <>
+              <strong>Photos and media</strong>, only for the images you choose to frame,
+              edit or save. Where possible we use Android&apos;s photo picker, which needs
+              no permission at all.
+            </>,
+            <>
+              <strong>Set wallpaper</strong>, to apply a wallpaper you select.
+            </>,
+            <>
+              <strong>Notifications</strong>, optional, for reminders or new content. You
+              can turn them off at any time in Android settings.
+            </>,
+            <>
+              <strong>Google Play Billing</strong>, in apps that offer purchases.
+            </>,
+          ]}
+        />
+        <p>
+          Any other permission is requested only when you use the feature that needs it,
+          is explained in the app, and the data it gives access to stays on your device.
+        </p>
       </LegalSection>
 
       <LegalSection id="how-we-use" number={5} title="How we use information">
@@ -182,6 +224,7 @@ export function PrivacyContent({
             "To provide, operate, maintain and secure the app and its core features.",
             "To remember your in-app settings and, for games, your progress.",
             "To display advertising in free versions and to measure its performance.",
+            "To deliver, verify and restore in-app purchases and subscriptions, and to prevent purchase fraud.",
             "To analyse aggregate usage so that we can improve the app.",
             "To detect, diagnose and resolve crashes, bugs and security issues.",
             "To respond to your support requests and communicate with you.",
@@ -242,7 +285,7 @@ export function PrivacyContent({
                     Free versions of {app} display advertising and use analytics and crash
                     reporting provided by the third parties listed below. Because the app
                     is directed to children, every ad request is tagged as child-directed
-                    and mixed-audience under the Google Play Families Policy and COPPA.
+                    under the Google Play Families Policy and COPPA.
                   </>,
                   <>
                     <strong>Ads are non-personalized only.</strong> We do not allow
@@ -251,20 +294,21 @@ export function PrivacyContent({
                     build advertising profiles from this app.
                   </>,
                   <>
-                    Ad content is restricted to age-appropriate categories permitted by
-                    Google&apos;s Families Ads program. Ad units are certified by Google
-                    for use in child-directed apps.
+                    We use only ad SDKs certified under Google Play&apos;s Families
+                    Self-Certified Ads SDK Program, and ad content is limited to the
+                    &quot;G&quot; (general audiences) maximum ad content rating.
                   </>,
                   <>
-                    Analytics in this app are aggregated and used only to fix crashes and
-                    understand which features are used. They are not used to track
-                    children across apps or websites.
+                    Analytics in this app are aggregated, configured not to collect the
+                    advertising identifier, and used only to fix crashes and understand
+                    which features are used. They are not used to track children across
+                    apps or websites.
                   </>,
                   <>
                     A parent or guardian can remove advertising entirely by using any
-                    ad-free option offered in the app, and can reset or delete the device
-                    advertising identifier on Android under Settings, then Google, then
-                    Ads.
+                    ad-free option offered in the app, and can delete the device
+                    advertising identifier in Android settings (Settings, then Privacy,
+                    then Ads, or Settings, then Google, then Ads on older versions).
                   </>,
                 ]
               : [
@@ -281,9 +325,20 @@ export function PrivacyContent({
                     they will be non-personalized.
                   </>,
                   <>
-                    You can reset or delete your advertising identifier and opt out of ad
-                    personalization at any time on Android by opening Settings, then
-                    Google, then Ads.
+                    In US states with consumer privacy laws, personalized ads may count as
+                    &quot;sharing&quot; or &quot;targeted advertising&quot;. Where required,
+                    the app shows a privacy choices prompt that lets you opt out, and you
+                    can always opt out by emailing us.
+                  </>,
+                  <>
+                    You can delete your advertising identifier at any time in Android
+                    settings (Settings, then Privacy, then Ads, or Settings, then Google,
+                    then Ads on older versions). Ads will then no longer be personalized.
+                  </>,
+                  <>
+                    Google AdMob is currently our only ad network. If we add others, for
+                    example through AdMob mediation, we will list them here before they
+                    are used.
                   </>,
                 ]
           }
@@ -315,22 +370,95 @@ export function PrivacyContent({
               body: "Anonymous crash and stability reporting.",
             },
             {
+              title: "Google User Messaging Platform",
+              body: "Shows the ad consent and privacy choices prompt where the law requires it.",
+            },
+            {
+              title: "Google Play Billing",
+              body: "Processes in-app purchases and subscriptions, where offered.",
+            },
+            {
               title: "Google Play services",
               body: "App delivery, updates and security on Android.",
+            },
+            {
+              title: "Google's processing",
+              body: (
+                <>
+                  Covered by the{" "}
+                  <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Google Privacy Policy
+                  </a>
+                  .
+                </>
+              ),
             },
           ]}
         />
       </LegalSection>
 
-      <LegalSection id="sharing" number={8} title="How we share information">
+      <LegalSection id="purchases" number={8} title="In-app purchases and subscriptions">
         <Clauses
           section={8}
           items={[
             <>
-              <strong>We do not sell your personal information, and we do not share it for
-              cross-context behavioral advertising</strong> except through the
-              consent-based ad choices described in Section 7.
+              Some apps offer optional in-app purchases or subscriptions, for example to
+              remove ads or unlock content. All payments are processed by{" "}
+              <strong>Google Play Billing</strong> under Google&apos;s terms and privacy
+              policy. We never receive your card number, bank details or billing address.
             </>,
+            <>
+              Google shares with us only what we need to deliver what you bought: the
+              order ID, a purchase token, the product, the purchase time and its status,
+              including refunds and cancellations. We use it to unlock and restore your
+              purchase on a new device or after reinstalling, to prevent fraud, and for
+              accounting and tax.
+            </>,
+            <>
+              Subscriptions renew automatically until you cancel. You can manage or cancel
+              them at any time in the Play Store under{" "}
+              <a
+                href="https://play.google.com/store/account/subscriptions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Payments &amp; subscriptions
+              </a>
+              . Refunds follow{" "}
+              <a
+                href="https://support.google.com/googleplay/answer/2479637"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Google Play&apos;s refund policy
+              </a>
+              , and you can also contact us for help.
+            </>,
+            "Purchase information is never used for advertising and is never sold.",
+          ]}
+        />
+      </LegalSection>
+
+      <LegalSection id="sharing" number={9} title="How we share information">
+        <Clauses
+          section={9}
+          items={[
+            childDirected ? (
+              <>
+                <strong>We do not sell or share personal information</strong>, and no data
+                from this app is used for cross-context behavioral advertising.
+              </>
+            ) : (
+              <>
+                <strong>We do not sell your personal information for money.</strong>{" "}
+                Personalized ads, where you allow them, may count as &quot;sharing&quot;
+                under some privacy laws. You can opt out as described in Section 7.
+              </>
+            ),
             "We share limited data with service providers, such as Google, that process data on our behalf to deliver, secure and measure the app.",
             "We may disclose data to authorities or third parties where required by law, to enforce our terms, or to protect rights, property or safety.",
             "We may transfer data to a successor entity if the studio or an app is ever sold, merged or reorganized, in which case this Policy continues to apply.",
@@ -338,7 +466,7 @@ export function PrivacyContent({
         />
       </LegalSection>
 
-      <LegalSection id="transfers" number={9} title="International data transfers">
+      <LegalSection id="transfers" number={10} title="International data transfers">
         <p>
           Our providers, including Google, may process data in the United States and other
           countries whose laws may differ from those in your jurisdiction. Where we
@@ -348,7 +476,7 @@ export function PrivacyContent({
         </p>
       </LegalSection>
 
-      <LegalSection id="retention" number={10} title="Data retention">
+      <LegalSection id="retention" number={11} title="Data retention">
         <p>
           We keep personal data only for as long as necessary for the purposes set out in
           this Policy, after which it is deleted or anonymized:
@@ -357,13 +485,14 @@ export function PrivacyContent({
           items={[
             "Support emails are kept for up to 24 months, then deleted.",
             "Crash and diagnostic logs are kept for up to 90 days.",
+            "Purchase records are kept while needed to provide and restore what you bought, and for as long as tax and accounting law requires.",
             "Aggregated analytics follow our provider settings, with user-level retention limited to 14 months.",
             "Settings and game progress remain on your device until you clear the app data or uninstall the app.",
           ]}
         />
       </LegalSection>
 
-      <LegalSection id="security" number={11} title="Information security">
+      <LegalSection id="security" number={12} title="Information security">
         <p>
           Data sent to our providers is protected with industry-standard TLS encryption in
           transit, access is restricted to people who need it, and we use reputable
@@ -373,9 +502,9 @@ export function PrivacyContent({
         </p>
       </LegalSection>
 
-      <LegalSection id="your-rights" number={12} title="Your rights">
+      <LegalSection id="your-rights" number={13} title="Your rights">
         <Clauses
-          section={12}
+          section={13}
           items={[
             <>
               <strong>EEA and UK (GDPR).</strong> You have the right to access, rectify,
@@ -385,15 +514,24 @@ export function PrivacyContent({
             </>,
             <>
               <strong>California (CCPA/CPRA).</strong> You have the right to know, delete
-              and correct your personal information, and to opt out of its sale or sharing.
-              We do not sell or share personal information and do not use sensitive
-              information for profiling. We will not discriminate against you for exercising
-              your rights.
+              and correct your personal information, and to opt out of its sale or sharing.{" "}
+              {childDirected
+                ? "We do not sell or share personal information."
+                : "We do not sell personal information for money. Personalized advertising may count as sharing, and you can opt out as described in Section 7."}{" "}
+              We do not use sensitive information for profiling, and we will not
+              discriminate against you for exercising your rights.
             </>,
             <>
               <strong>Other regions.</strong> Residents of Brazil (LGPD), Canada (PIPEDA),
               Australia and other jurisdictions have comparable rights under their local
               laws, which we honor where they apply to you.
+            </>,
+            <>
+              <strong>Deleting your data.</strong> Our apps have no accounts, so there is
+              nothing to close. Uninstalling an app or clearing its data removes everything
+              it stored on your device. To delete data held by us or our providers, such as
+              support emails or crash logs, email us. Purchase records we must keep by law
+              are deleted once that period ends.
             </>,
             <>
               To exercise any right, email <a href={SITE.emailHref}>{SITE.email}</a>. We may
@@ -405,9 +543,9 @@ export function PrivacyContent({
         />
       </LegalSection>
 
-      <LegalSection id="children" number={13} title="Children's privacy">
+      <LegalSection id="children" number={14} title="Children's privacy">
         <Clauses
-          section={13}
+          section={14}
           items={
             childDirected
               ? [
@@ -469,15 +607,16 @@ export function PrivacyContent({
         />
       </LegalSection>
 
-      <LegalSection id="platforms" number={14} title="Google Play">
+      <LegalSection id="platforms" number={15} title="Google Play">
         <p>
-          The data each app collects and shares is summarized in its Data Safety section on
-          Google Play. This Policy is the canonical privacy policy referenced there and
-          prevails in the event of any inconsistency with that summary.
+          The data each app collects and shares is summarized in its Data safety section on
+          Google Play, and this Policy is the privacy policy linked there. We keep the two
+          consistent. If you notice a difference between them, please tell us and we will
+          correct it.
         </p>
       </LegalSection>
 
-      <LegalSection id="changes" number={15} title="Changes to this policy">
+      <LegalSection id="changes" number={16} title="Changes to this policy">
         <p>
           We may update this Policy as our apps or the law change. Material changes will be
           posted here with a new effective date and, where required, surfaced inside the
@@ -486,7 +625,7 @@ export function PrivacyContent({
         </p>
       </LegalSection>
 
-      <LegalSection id="contact" number={16} title="Contact us">
+      <LegalSection id="contact" number={17} title="Contact us">
         <p>
           Questions, privacy requests or complaints are welcome. We aim to reply within a
           few business days.

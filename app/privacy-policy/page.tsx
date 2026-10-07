@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { LegalShell, LEGAL_LAST_UPDATED } from "@/components/legal/legal-shell"
+import { LegalShell, PRIVACY_LAST_UPDATED } from "@/components/legal/legal-shell"
 import { PRIVACY_TOC, PrivacyContent } from "@/components/legal/privacy-content"
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
         </>
       }
       intro="One privacy policy for every app we publish. It explains what we collect, why, and the control you have over it."
-      lastUpdated={LEGAL_LAST_UPDATED}
+      lastUpdated={PRIVACY_LAST_UPDATED}
       badge="Applies to all DevLogs apps"
       toc={PRIVACY_TOC}
     >
