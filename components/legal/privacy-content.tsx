@@ -93,8 +93,14 @@ export function PrivacyContent({
               the <strong>data controller</strong> responsible for your personal data.
             </>,
             <>
+              {SITE.legalName} acts as a trader under EEA and UK consumer law. Our terms
+              for each app are available at{" "}
+              <a href="/terms-and-conditions">devlogs.pro/terms-and-conditions</a>.
+            </>,
+            <>
               You can contact us about this Policy or your personal data by email at{" "}
-              <a href={SITE.emailHref}>{SITE.email}</a> or by post at {SITE.address}.
+              <a href={SITE.emailHref}>{SITE.email}</a>, by phone on{" "}
+              <a href={SITE.phoneHref}>{SITE.phone}</a>, or by post at {SITE.address}.
             </>,
             <>
               We have not appointed a statutory Data Protection Officer, as we are not
@@ -637,6 +643,7 @@ export function PrivacyContent({
               title: "Email",
               body: <a href={SITE.emailHref}>{SITE.email}</a>,
             },
+            { title: "Phone", body: <a href={SITE.phoneHref}>{SITE.phone}</a> },
             { title: "Address", body: SITE.address },
             {
               title: "Supervisory authority",

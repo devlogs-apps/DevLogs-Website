@@ -8,10 +8,10 @@ import { LegalToc } from "./legal-toc"
 export type TocItem = { id: string; label: string }
 
 /** Effective date shown on the terms pages. */
-export const LEGAL_LAST_UPDATED = "May 28, 2026"
+export const LEGAL_LAST_UPDATED = "November 5, 2026"
 
 /** Effective date shown on every privacy policy page. */
-export const PRIVACY_LAST_UPDATED = "October 7, 2026"
+export const PRIVACY_LAST_UPDATED = "November 5, 2026"
 
 export function LegalShell({
   kind,

@@ -1,4 +1,4 @@
-import { Bullets, Callout, Clauses, LegalSection, type TocItem } from "./legal-shell"
+import { Bullets, Callout, Clauses, InfoGrid, LegalSection, type TocItem } from "./legal-shell"
 import { SITE } from "@/lib/site"
 
 export const TERMS_TOC: TocItem[] = [
@@ -17,7 +17,9 @@ export const TERMS_TOC: TocItem[] = [
   { id: "governing-law", label: "13. Governing law" },
   { id: "general", label: "14. General" },
   { id: "changes", label: "15. Changes" },
-  { id: "contact", label: "16. Contact" },
+  { id: "trader", label: "16. Trader information" },
+  { id: "consumer-rights", label: "17. Consumer rights" },
+  { id: "contact", label: "18. Contact" },
 ]
 
 export function TermsContent({ appName }: { appName?: string }) {
@@ -218,12 +220,44 @@ export function TermsContent({ appName }: { appName?: string }) {
         </p>
       </LegalSection>
 
-      <LegalSection id="contact" number={16} title="Contact us">
+      <LegalSection id="trader" number={16} title="Trader information">
+        <Clauses
+          section={16}
+          items={[
+            <>
+              {SITE.legalName} acts as a <strong>trader</strong> for the purposes of
+              European Economic Area (EEA) and United Kingdom (UK) consumer law in relation
+              to {app}.
+            </>,
+            "We commit to only offer products and services through our apps that comply with applicable laws.",
+            "Our trader contact details are listed in the Contact section below and are also shown on our Google Play listings.",
+          ]}
+        />
+      </LegalSection>
+
+      <LegalSection id="consumer-rights" number={17} title="Consumer rights (EEA and UK)">
+        <Clauses
+          section={17}
+          items={[
+            "If you are a consumer in the EEA or the UK, nothing in these Terms removes or limits the mandatory consumer rights you have under the law of your country of residence, including rights relating to digital content and digital services that are faulty or not as described.",
+            "Where a clause in these Terms (including the disclaimers, limitation of liability and governing-law clauses) conflicts with those mandatory rights, the mandatory rights prevail.",
+            "Purchases are made through Google Play. Withdrawal, cancellation and refund rights for purchases are handled under Google Play's terms and the law that applies to you.",
+          ]}
+        />
+      </LegalSection>
+
+      <LegalSection id="contact" number={18} title="Contact us">
         <p>
-          Questions about these Terms can be sent to{" "}
-          <a href={SITE.emailHref}>{SITE.email}</a>, or by post to {SITE.legalName},{" "}
-          {SITE.address}.
+          Questions about these Terms can be sent to us using the details below.
         </p>
+        <InfoGrid
+          items={[
+            { title: "Trader", body: SITE.legalName },
+            { title: "Email", body: <a href={SITE.emailHref}>{SITE.email}</a> },
+            { title: "Phone", body: <a href={SITE.phoneHref}>{SITE.phone}</a> },
+            { title: "Address", body: SITE.address },
+          ]}
+        />
       </LegalSection>
     </>
   )
