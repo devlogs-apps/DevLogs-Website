@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { TermsAppPage } from "@/components/legal/legal-pages"
 
-const APP = "Diwali Photo Frames: Editor"
+const APP = "Diwali Photo Frame Editor & DP"
 
 export const metadata: Metadata = {
   title: `Terms & Conditions · ${APP}`,

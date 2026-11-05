@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { TermsAppPage } from "@/components/legal/legal-pages"
 
-const APP = "Silly Smile Wallpaper"
+const APP = "Silly Smile Gun Live Wallpaper"
 
 export const metadata: Metadata = {
   title: `Terms & Conditions · ${APP}`,
